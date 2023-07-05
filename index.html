@@ -4,7 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xarkaan</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon/favicon-16x16.png">
+    <link rel="manifest" href="assets/icons/favicon/site.webmanifest">
+    <link rel="mask-icon" href="assets/icons/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>XARKAAN</title>
 </head>
 <style>
     body{
@@ -33,9 +40,20 @@
     .div-contact{
         position: absolute;
         top: -100px;
-        left: calc(75% - 50px);;
+        left: calc(75% - 50px);
         width: 25%;
     }
+
+
+    @media (max-width: 768px) {
+        .div-contact{
+            position: absolute;
+            left: 0px;
+            padding: 0px;
+            width: 90%;
+        }
+    }
+
 
     .bg-main ul{
         color: white;
@@ -58,6 +76,19 @@
         top: 10%;
         padding: 40px;
         width: 35%;
+    }
+
+    @media (max-width: 768px) {
+    /* Estilos para dispositivos con ancho máximo de 768px */
+    /* Aquí puedes agregar los estilos específicos para dispositivos móviles */
+    /* Por ejemplo, puedes ajustar el tamaño de la imagen o cambiar la disposición */
+        .title-container{
+            color: white;
+            position: relative;
+            top: 10%;
+            padding: 40px;
+            width: 100%;
+        }
     }
 
     .main-title{
@@ -196,6 +227,27 @@ a.pi { text-decoration: none; }
     height: 100%;
     width: 100%;
 }
+
+
+@media (max-width: 768px) {
+
+    .service-item{
+        width: 100%;
+        margin: 5% 3%;
+        text-align: center;
+    }
+
+    .div-services{
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+}
+
+
+
+
 .section3Dimg1{
     width: 45%;
     position: absolute;
@@ -544,10 +596,56 @@ a:hover {
   }
 }
 
+#preloading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #d6cece;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    #preloading .spinner {
+      width: 200px;
+      height: 200px;
+      border: 4px solid #ccc;
+      border-top-color: #333;
+      border-radius: 50%;
+      animation: spin 1s ease-in-out infinite;
+    }
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    /* Estilos adicionales para ocultar el preloading una vez cargada la página */
+    .loaded #preloading {
+      display: none;
+    }
+
+
+
+    .bg-img-main{
+        background-image: url('assets/img/bg_main.png');
+    }
+
+
 </style>
 <body>
+
+    <div id="preloading">
+        <div class="spinner"></div>
+        <img src="assets/img/logoCircle.png" style="position: absolute;width: 200px;"/>
+    </div>
+
     <section id="main">
-        <div class="div-container bg-main" style="background-image: url('assets/img/bg_main.png');">
+        <div class="div-container bg-main bg-img-main">
         
         <!-- <div class="sectionARimg">
                 <img src="assets/img/imgARWoman.png" style="width: 100%;border-radius: 20px;" alt="">
@@ -743,6 +841,14 @@ a:hover {
     </section>
 
 <script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+      var preloading = document.getElementById('preloading');
+      setTimeout(function() {
+        document.body.classList.add('loaded');
+      }, 1500);
+    });
+
     function clearActiveClass(){
         var elements = document.querySelectorAll('[id^="link"]');
         for (var i = 0; i < elements.length; i++) {
